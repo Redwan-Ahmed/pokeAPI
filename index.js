@@ -46,16 +46,18 @@ app.get("/pokemon/:name", async (req, res) => {
  * @returns JSON object of the Pokemon Evolution chain
  */
 function parseEvolutionChain(chain) {
+  // Destructure the properties for clarity
+  const { species, evolves_to } = chain;
   const result = {
-    name: chain.species.name,
+    name: species.name,
     variations: [],
   };
 
-  if (chain.evolves_to.length > 0) {
-    chain.evolves_to.forEach((variation) => {
-      const variationData = parseEvolutionChain(variation);
-      result.variations.push(variationData);
-    });
+  // use a map to push each variation to result variation array 
+  if (evolves_to && evolves_to.length > 0) {
+    result.variations = evolves_to.map((variation) =>
+      parseEvolutionChain(variation)
+    );
   }
 
   return result;
