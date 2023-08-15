@@ -1,7 +1,5 @@
 # Welcome to the pokeAPI Project
 
-# Welcome to the pokeAPI Project
-
 ## Applicant Information
 - **Project:** Home Office - Technical Test
 - **Reference:** EAC 303753
