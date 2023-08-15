@@ -28,10 +28,10 @@ app.get("/pokemon/:name", async (req, res) => {
     if (!evoChainData) {
       throw new Error(`Missing Pokemon (${pokemonName}) Evolution Data.`);
     }
-    
+
     const evolutionChain = parseEvolutionChain(evoChainData);
 
-    res.json(evolutionChain);
+    res.status(200).json(evolutionChain);
   } catch (error) {
     console.error("Error fetching data from PokeAPI:", error.message);
     res
@@ -64,3 +64,5 @@ function parseEvolutionChain(chain) {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+module.exports = app; // Export the app object
